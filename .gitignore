@@ -19,3 +19,9 @@ docs/*
 
 #macos
 .DS_Store
+
+data/
+
+docs-web/*.lock.db
+docs-web/*.mv.db
+docs-web/*.trace.db
