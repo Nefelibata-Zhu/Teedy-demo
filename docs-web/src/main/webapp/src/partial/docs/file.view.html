@@ -58,3 +58,105 @@
     {{ 'file.view.not_found' | translate }}
   </p>
 </div>
+
+<div class="modal-header">
+  <h3>
+    <i ng-if="!file">
+      <span class="fas fa-circle-notch fa-spin"></span> {{ 'loading' | translate }}
+    </i>
+    {{ file.name }} <small>{{ file.mimetype }} | {{ file.size | filesize }}</small>
+    <button type="button" class="close" ng-click="$dismiss()">&times;</button>
+  </h3>
+</div>
+<div class="modal-body text-center">
+  <div class="btn-toolbar" role="toolbar">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default" ng-click="previousFile()">
+        <span class="fas fa-chevron-left"></span> {{ 'document.file.view.previous' | translate }}
+      </button>
+      <button type="button" class="btn btn-default" ng-click="nextFile()">
+        {{ 'document.file.view.next' | translate }} <span class="fas fa-chevron-right"></span>
+      </button>
+    </div>
+    <div class="btn-group">
+      <a ng-href="../api/file/{{ file.id }}/data" target="_blank" class="btn btn-default">
+        <span class="fas fa-download"></span> {{ 'document.file.download' | translate }}
+      </a>
+      <a ng-click="translateFile()" class="btn btn-default">
+        <span class="fas fa-language"></span> {{ 'document.translate.translate_file' | translate }}
+      </a>
+    </div>
+  </div>
+  
+  <!-- Preview error -->
+  <div ng-if="error">
+    <p class="text-center lead">
+      <span class="fas fa-exclamation-triangle"></span>
+      {{ 'document.file.preview.error' | translate }}
+    </p>
+  </div>
+  
+  <!-- Content preview -->
+  <div ng-if="content && !processing">
+    <div class="video-js-box" ng-switch="mimetype">
+      <!-- Audio preview -->
+      <div ng-switch-when="audio" class="text-center">
+        <div class="audio-container">
+          <audio controls="controls">
+            <source ng-src="{{ content }}" type="{{ file.mimetype }}" />
+          </audio>
+        </div>
+      </div>
+
+      <!-- Video preview -->
+      <div ng-switch-when="video" class="text-center">
+        <div class="video-container">
+          <video controls="controls" crossorigin="anonymous">
+            <source ng-src="{{ content }}" type="{{ file.mimetype }}" />
+          </video>
+        </div>
+      </div>
+
+      <!-- Image preview -->
+      <div ng-switch-when="image" class="text-center">
+        <div>
+          <img ng-src="{{ content }}" />
+        </div>
+      </div>
+
+      <!-- PDF preview -->
+      <div ng-switch-when="pdf" class="text-center">
+        <div>
+          <iframe ng-if="content" type="application/pdf" ng-src="{{ content }}" style="width: 100%; height: 600px;"></iframe>
+        </div>
+      </div>
+
+      <!-- Office preview -->
+      <div ng-switch-when="office" class="text-center">
+        <iframe ng-src="{{ content }}" style="width: 100%; height: 600px; border: none;"></iframe>
+      </div>
+      
+      <!-- Text preview -->
+      <div ng-switch-when="text" class="text-left" style="overflow-x: scroll">
+        <pre>{{ content }}</pre>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Loading preview -->
+  <div ng-if="!content && !error && !processing">
+    <p class="text-center lead">
+      <span class="fas fa-circle-notch fa-spin"></span>
+      {{ 'document.file.preview.message' | translate }}
+    </p>
+  </div>
+  
+  <!-- Processing file -->
+  <div ng-if="processing">
+    <p class="text-center lead">
+      <span class="fas fa-cog fa-spin"></span>
+      {{ 'document.file.processing.message' | translate }}
+    </p>
+  </div>
+</div>
+<div class="modal-footer">

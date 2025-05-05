@@ -1,0 +1,39 @@
+<h1>用户注册请求</h1>
+
+<div ng-if="loadError" class="alert alert-warning">
+  <span class="fas fa-exclamation-triangle"></span> 加载注册请求时出错。可能是服务器上的数据库表尚未创建。
+</div>
+
+<div ng-if="requests.length === 0 && !loadError">
+  <div class="alert alert-info">
+    没有待处理的注册请求
+  </div>
+</div>
+
+<div class="table-responsive" ng-if="requests.length > 0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>用户名</th>
+        <th>电子邮箱</th>
+        <th>申请日期</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="request in requests">
+        <td>{{ request.username }}</td>
+        <td>{{ request.email }}</td>
+        <td>{{ request.create_date | date:'medium' }}</td>
+        <td>
+          <button type="button" class="btn btn-success" ng-click="approve(request)">
+            <span class="fas fa-check"></span> 批准
+          </button>
+          <button type="button" class="btn btn-danger" ng-click="reject(request)">
+            <span class="fas fa-times"></span> 拒绝
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> 

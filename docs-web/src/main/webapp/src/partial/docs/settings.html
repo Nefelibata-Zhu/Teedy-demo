@@ -1,27 +1,25 @@
 <div class="row">
   <div class="col-md-3 settings-menu">
     <div class="panel panel-default">
-      <div class="panel-heading"><strong>{{ 'settings.menu_personal_settings' | translate }}</strong></div>
+      <div class="panel-heading"><strong>个人设置</strong></div>
       <ul class="list-group">
-        <a class="list-group-item" ui-sref-active="{ active: 'settings.account.**' }" href="#/settings/account">{{ 'settings.menu_user_account' | translate }}</a>
-        <a class="list-group-item" ui-sref-active="{ active: 'settings.security.**' }" href="#/settings/security">{{ 'settings.menu_two_factor_auth' | translate }}</a>
-        <a class="list-group-item" ui-sref-active="{ active: 'settings.session.**' }" href="#/settings/session">{{ 'settings.menu_opened_sessions' | translate }}</a>
-        <a class="list-group-item" ui-sref-active="{ active: 'settings.fileimporter.**' }" href="#/settings/fileimporter">{{ 'settings.menu_file_importer' | translate }}</a>
+        <a class="list-group-item" ui-sref-active="active" href="#/settings/account">用户管理</a>
+        <a class="list-group-item" ui-sref-active="active" href="#/settings/security">双重身份验证</a>
+        <a class="list-group-item" ui-sref-active="active" href="#/settings/session">打开会话</a>
+        <a class="list-group-item" ui-sref-active="active" href="#/settings/gdpr">个人数据使用</a>
       </ul>
     </div>
 
     <div class="panel panel-default" ng-show="isAdmin">
-      <div class="panel-heading"><strong>{{ 'settings.menu_general_settings' | translate }}</strong></div>
+      <div class="panel-heading"><strong>系统</strong></div>
       <ul class="list-group">
-        <a class="list-group-item" ui-sref-active="{ active: 'settings.workflow.**' }" href="#/settings/workflow">{{ 'settings.menu_workflow' | translate }}</a>
-        <a class="list-group-item" ui-sref-active="{ active: 'settings.user.**' }" href="#/settings/user">{{ 'settings.menu_users' | translate }}</a>
-        <a class="list-group-item" ui-sref-active="{ active: 'settings.group.**' }" href="#/settings/group">{{ 'settings.menu_groups' | translate }}</a>
-        <a class="list-group-item" ui-sref-active="{ active: 'settings.vocabulary.**' }" href="#/settings/vocabulary">{{ 'settings.menu_vocabularies' | translate }}</a>
-        <a class="list-group-item" ui-sref-active="{ active: 'settings.config.**' }" href="#/settings/config">{{ 'settings.menu_configuration' | translate }}</a>
-        <a class="list-group-item" ui-sref-active="{ active: 'settings.metadata.**' }" href="#/settings/metadata">{{ 'settings.menu_metadata' | translate }}</a>
-        <a class="list-group-item" ui-sref-active="{ active: 'settings.inbox.**' }" href="#/settings/inbox">{{ 'settings.menu_inbox' | translate }}</a>
-        <a class="list-group-item" ui-sref-active="{ active: 'settings.ldap.**' }" href="#/settings/ldap">{{ 'settings.menu_ldap' | translate }}</a>
-        <a class="list-group-item" ui-sref-active="{ active: 'settings.monitoring.**' }" href="#/settings/monitoring">{{ 'settings.menu_monitoring' | translate }}</a>
+        <a class="list-group-item" ui-sref-active="active" href="#/settings/workflow">默认工作流</a>
+        <a class="list-group-item" ui-sref-active="active" href="#/settings/user">用户管理</a>
+        <a class="list-group-item" ui-sref-active="active" href="#/settings/group">群组管理</a>
+        <a class="list-group-item" ui-sref-active="active" href="#/settings/vocabulary">词条输入</a>
+        <a class="list-group-item" ui-sref-active="active" href="#/settings/ldap">LDAP配置</a>
+        <a class="list-group-item" ui-sref-active="active" href="#/settings/metadata">元数据</a>
+        <a class="list-group-item" ui-sref-active="active" href="#/settings/registration">注册请求</a>
       </ul>
     </div>
   </div>

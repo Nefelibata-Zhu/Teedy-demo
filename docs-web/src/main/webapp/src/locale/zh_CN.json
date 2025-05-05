@@ -177,6 +177,15 @@
       "title": "共享文档",
       "message": "如果您想多次共享同一文档，请将共享命名.",
       "submit": "共享"
+    },
+    "translate": {
+      "title": "翻译文档",
+      "message": "将此文档翻译成其他语言",
+      "target_language": "目标语言",
+      "translate_document": "翻译文档",
+      "translate_file": "翻译文件",
+      "translate_btn": "翻译",
+      "loading": "正在翻译，请稍候..."
     }
   },
   "file": {

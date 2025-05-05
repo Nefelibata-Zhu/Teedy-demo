@@ -141,6 +141,27 @@ angular.module('docs').controller('DocumentView', function ($scope, $rootScope, 
 
     return false;
   };
+  
+  /**
+   * Open the translate dialog.
+   */
+  $scope.translateDocument = function () {
+    $uibModal.open({
+      templateUrl: 'partial/docs/document.translate.html',
+      controller: 'DocumentModalTranslate',
+      size: 'lg',
+      resolve: {
+        document: function() {
+          return $scope.document;
+        },
+        file: function() {
+          return null;
+        }
+      }
+    });
+
+    return false;
+  };
 
   /**
    * Validate the workflow.

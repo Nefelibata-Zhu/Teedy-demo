@@ -1,5 +1,5 @@
 <style>
-  /* No navbar in login screen */
+  /* No navbar in registration screen */
   .navbar {
     display: none;
   }
@@ -35,58 +35,38 @@
           <div class="form-group">
             <label class="sr-only" for="inputUsername">用户名</label>
             <input class="form-control" type="text" id="inputUsername" name="username"
-                   placeholder="用户名" ng-model="user.username" />
+                   placeholder="用户名" ng-model="user.username" required />
           </div>
 
           <div class="form-group">
             <label class="sr-only" for="inputPassword">密码</label>
             <input class="form-control" type="password" id="inputPassword" name="password"
-                   placeholder="密码" ng-model="user.password" />
-          </div>
-
-          <span class="help-block" ng-if="codeRequired">
-            需要验证码
-            <span class="fas fa-question-circle" title="请输入双重验证应用程序中的验证码"></span>
-          </span>
-          <div class="form-group" ng-if="codeRequired">
-            <label class="sr-only" for="inputCode">验证码</label>
-            <input class="form-control" type="text" id="inputCode" name="code"
-                   placeholder="验证码" ng-model="user.code" />
+                   placeholder="密码" ng-model="user.password" required />
           </div>
 
           <div class="form-group">
-            <label>
-              <input type="checkbox" ng-model="user.remember" name="remember" /> 记住我
-            </label>
+            <label class="sr-only" for="inputEmail">电子邮箱</label>
+            <input class="form-control" type="email" id="inputEmail" name="email"
+                   placeholder="电子邮箱" ng-model="user.email" required />
           </div>
 
           <div class="row">
             <div class="col-md-6">
-              <button type="submit" class="btn btn-primary" ng-click="login()">
-                <span class="fas fa-check"></span> 登录
+              <button type="submit" class="btn btn-primary" ng-click="register()" ng-disabled="isLoading">
+                <span class="fas" ng-class="{'fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></span> 提交注册
               </button>
             </div>
 
             <div class="col-md-6 text-right btn-password-lost">
               <div class="well-sm">
-                <a href ng-click="openPasswordLost()">忘记密码</a>
+                <a href="#/login">返回登录</a>
               </div>
             </div>
           </div>
-
-          <div class="text-center mt-10">
-            <a href="#/register">注册新账号</a>
-          </div>
-
-          <p class="text-center" ng-if="app.guest_login">&nbsp;</p>
-
-          <button type="submit" class="btn btn-default btn-block" ng-if="app.guest_login" ng-click="loginAsGuest()">
-            <span class="fas fa-user"></span> 以访客身份登录
-          </button>
         </form>
       </div>
     </div>
   </div>
 
   <div class="login-img-container col-sm-6 hidden-xs"></div>
-</div>
+</div> 

@@ -13,6 +13,9 @@ create cached table T_DOCUMENT_TAG ( DOT_ID_C varchar(36) not null, DOT_IDDOCUME
 create cached table T_ACL ( ACL_ID_C varchar(36) not null, ACL_PERM_C varchar(30) not null, ACL_SOURCEID_C varchar(36) not null, ACL_TARGETID_C varchar(36) not null, ACL_DELETEDATE_D datetime, primary key (ACL_ID_C) );
 create cached table T_SHARE ( SHA_ID_C varchar(36) not null, SHA_NAME_C varchar(36), SHA_CREATEDATE_D datetime, SHA_DELETEDATE_D datetime, primary key (SHA_ID_C) );
 create cached table T_AUDIT_LOG ( LOG_ID_C varchar(36) not null, LOG_IDENTITY_C varchar(36) not null, LOG_CLASSENTITY_C varchar(50) not null, LOG_TYPE_C varchar(50) not null, LOG_MESSAGE_C varchar(1000), LOG_CREATEDATE_D datetime, primary key (LOG_ID_C) );
+-- 新增：用户注册请求表
+create cached table T_USER_REGISTRATION_REQUEST (URR_ID_C varchar(36) not null, URR_USERNAME_C varchar(50) not null, URR_PASSWORD_C varchar(255) not null, URR_EMAIL_C varchar(100) not null, URR_CREATEDATE_D timestamp not null, URR_STATUS_C varchar(50) not null, primary key (URR_ID_C));
+-- 新增结束
 
 alter table T_AUTHENTICATION_TOKEN add constraint FK_AUT_IDUSER_C foreign key (AUT_IDUSER_C) references T_USER (USE_ID_C) on delete restrict on update restrict;
 alter table T_DOCUMENT add constraint FK_DOC_IDUSER_C foreign key (DOC_IDUSER_C) references T_USER (USE_ID_C) on delete restrict on update restrict;
@@ -32,6 +35,10 @@ create index IDX_DOC_LANGUAGE_C on T_DOCUMENT (DOC_LANGUAGE_C);
 create index IDX_ACL_SOURCEID_C on T_ACL (ACL_SOURCEID_C);
 create index IDX_ACL_TARGETID_C on T_ACL (ACL_TARGETID_C);
 create index IDX_LOG_IDENTITY_C on T_AUDIT_LOG (LOG_IDENTITY_C);
+-- 新增：用户注册请求表索引
+create index IDX_URR_USERNAME_C on T_USER_REGISTRATION_REQUEST (URR_USERNAME_C);
+create index IDX_URR_STATUS_C on T_USER_REGISTRATION_REQUEST (URR_STATUS_C);
+-- 新增结束
 
 insert into T_CONFIG(CFG_ID_C, CFG_VALUE_C) values('DB_VERSION', '0');
 insert into T_CONFIG(CFG_ID_C, CFG_VALUE_C) values('LUCENE_DIRECTORY_STORAGE', 'FILE');

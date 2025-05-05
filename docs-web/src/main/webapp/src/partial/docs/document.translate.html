@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h3>{{ 'document.translate.title' | translate }}</h3>
+</div>
+<div class="modal-body">
+  <p>{{ 'document.translate.message' | translate }}</p>
+  
+  <form class="form-horizontal" name="translateForm">
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="inputLanguage">{{ 'document.translate.target_language' | translate }}</label>
+      <div class="col-sm-8">
+        <select id="inputLanguage" class="form-control" ng-model="selectedLanguage">
+          <option ng-repeat="language in languages" value="{{ language.code }}">{{ language.name }}</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="text-center mt-10" ng-if="isLoading">
+      <span class="fas fa-circle-notch fa-spin"></span> {{ 'document.translate.loading' | translate }}
+    </div>
+    
+    <div ng-if="translation && !isLoading">
+      <hr>
+      <h4>{{ translation.title || file.name }}</h4>
+      <div ng-bind-html="translation.description || translation.content | linky"></div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="close()">{{ 'close' | translate }}</button>
+  <button class="btn btn-primary" ng-click="translate()" ng-disabled="!selectedLanguage || isLoading">
+    <span class="fas fa-language"></span> {{ 'document.translate.translate_btn' | translate }}
+  </button>
+</div> 
